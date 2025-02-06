@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transportation Problem Solver</title>
+</head>
+<body>
+    <h1>Transportation Problem Solver</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Supply:</label><br>
+        <input type="number" name="supply"><br>
+        <input type="number" name="supply"><br>
+        <!-- Add more inputs as needed -->
+        <br>
+        <label>Demand:</label><br>
+        <input type="number" name="demand"><br>
+        <input type="number" name="demand"><br>
+        <!-- Add more inputs as needed -->
+        <br>
+        <label>Costs:</label><br>
+        <input type="text" name="costs"><br>
+        <!-- Format costs as a matrix, e.g., enter row-wise comma-separated values -->
+        <br>
+        <input type="submit" value="Solve">
+    </form>
+</body>
+</html>

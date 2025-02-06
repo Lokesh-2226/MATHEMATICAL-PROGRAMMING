@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transportation Problem Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        td, th {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .back-link {
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Transportation Problem Result</h1>
+
+    {% if error %}
+        <p class="error">Error: {{ error }}</p>
+    {% else %}
+        <h2>Optimal Transportation Plan:</h2>
+        <table>
+            <tr>
+                <th></th>
+                {% for j in num_consumers_list %}
+                    <th>Consumer {{ j|add:"1" }}</th>
+                {% endfor %}
+                <th>Supply</th>
+            </tr>
+            {% for i in num_suppliers_list %}
+                <tr>
+                    <th>Supplier {{ i|add:"1" }}</th>
+                    {% for j in num_consumers_list %}
+                        <td>{{ flows[i][j]|floatformat:2 }}</td>
+                    {% endfor %}
+                    <td>{{ supply[i]|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th>Demand</th>
+                {% for j in num_consumers_list %}
+                    <td>{{ demand[j]|floatformat:2 }}</td>
+                {% endfor %}
+                <td></td>
+            </tr>
+        </table>
+
+        <p><strong>Total Transportation Cost:</strong> {{ total_cost|floatformat:2 }}</p>
+    {% endif %}
+
+    <div class="back-link">
+        <a href="{% url 'transportation_solve' %}">&larr; Back to Transportation Problem Solver</a>
+    </div>
+</body>
+</html>
